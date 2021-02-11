@@ -1,0 +1,13 @@
+- name: Provision Python
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Boostrap python
+      raw: test -e /usr/bin/python || (pacman --noconfirm -Sy python poetry)
+
+- name: Provision scraper
+  hosts: all
+  tasks:
+    - name: install chrome
+      command: sudo -u aur paru --noconfirm -Sy google-chrome
+
